@@ -1,68 +1,102 @@
+#include <iostream>
 #include <SFML/Graphics.hpp>
-using namespace sf;
+#include <SFML/Audio.hpp>
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/OpenGL.hpp>
+#include <stdio.h>
+#include <string.h>
+#include <sstream>
+#include <chrono>
+using namespace std;
+
 
 int main()
 {
-	RenderWindow window(VideoMode(1080, 720), "What");
-	window.setFramerateLimit(60);
+	bool judg = true;
+	int i = 0, t = 10, m = 0, n = 0;
+	sf::RenderWindow window(sf::VideoMode(600, 480), "Game from scratch!");
 
-	Texture t1, t2;
-	t1.loadFromFile("BG01.png");
-	t2.loadFromFile("12.png");
+	//backGround
+	sf::Texture backGround;
+	if (!backGround.loadFromFile("C:/Users/tp/source/repos/GAME123/01.png"))
+	{
+		std::cout << "Disable to open this file" << std::endl;
+	}
 
-	Sprite sBackground(t1), sanimation(t2);
-	sanimation.setPosition(300, 300);
-	sanimation.setOrigin(22, 22);
+	backGround.setSmooth(true);
 
-	float x= 300, y= 300;
-	float speed = 0, angle = 0;
-	float maxSpeed = 12.0;
-	float acc = 0.2, dec = 0.3;
-	float turnSpeed = 0.08;
+	sf::Sprite ground;
+	ground.setTexture(backGround);
+	ground.setPosition(sf::Vector2f(0.f, 0.f));
+	ground.setScale(sf::Vector2f(1.0f, 1.0f));
 
+	sf::Font font;
+	if (!font.loadFromFile("C:/Users/tp/source/repos/GAME123/Whale.ttf"))
+	{
+		std::cout << "ERROR" << std::endl;
+		system("pause");
+	}
+
+
+
+
+	////// Texture
+	sf::Texture playerTexture;
+	if (!playerTexture.loadFromFile("C:/Users/tp/source/repos/GAME123/12.png"))
+	{
+		std::cout << "Load failed" << std::endl;
+	}
+
+	////// Sprite
+	sf::Sprite shapeSprite;
+	shapeSprite.setTexture(playerTexture);
+
+	int spriteSizeX = playerTexture.getSize().x / 3;
+	int spriteSizeY = playerTexture.getSize().y / 4;
+
+	shapeSprite.setTextureRect(sf::IntRect(0, 0, spriteSizeX, spriteSizeY));
+
+	int animationFrame = 0;
 
 	while (window.isOpen())
 	{
-		Event e;
-		while (window.pollEvent(e))
-		{
-			if(e.type == Event::Closed)
-				window.close();
-		}
-	
-		bool Up = 0, Right = 0, Down = 0, Left = 0;
-		if (Keyboard::isKeyPressed(Keyboard::Up)) Up = 1;
-		if (Keyboard::isKeyPressed(Keyboard::Right)) Right = 1;
-		if (Keyboard::isKeyPressed(Keyboard::Down)) Down = 1;
-		if (Keyboard::isKeyPressed(Keyboard::Left)) Left = 1;
-		//animation movement
-		if (Up && speed < maxSpeed)
-			if (speed < 0) speed += dec;
-			else speed += acc;
-		if (Down && speed > -maxSpeed)
-			if (speed >0)speed -= dec;
-			else speed -=acc;
-		if (!Up && !Down)
-			if (speed - dec > 0) speed -= dec;
-			else if (speed + dec < 0) speed += dec;
-			else speed = 0;
-		if (Right && speed != 0) angle += turnSpeed * speed / maxSpeed;
-		if(Left&& speed!=0) angle -= turnSpeed * speed / maxSpeed;
 
-		x += sin(angle) * speed;
-		y -= cos(angle) * speed;
-
-
-
-
-		window.clear(Color::Black);
-		window.draw(sBackground);
-		sanimation.setPosition(x, y);
-		sanimation.setRotation(angle * 180 / 3.141592);
-
-		window.draw(sanimation);
+		window.draw(ground);
+		window.draw(shapeSprite);
 		window.display();
-	}
-	return 0;
-}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		{
+			shapeSprite.move(.1f, 0.f);
+			shapeSprite.setTextureRect(sf::IntRect(spriteSizeX * animationFrame, spriteSizeY * 2, spriteSizeX, spriteSizeY));
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		{
+			shapeSprite.move(-.1f, 0.f);
+			shapeSprite.setTextureRect(sf::IntRect(spriteSizeX * animationFrame, spriteSizeY * 1, spriteSizeX, spriteSizeY));
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+		{
+			shapeSprite.move(0.f, -.1f);
+			shapeSprite.setTextureRect(sf::IntRect(spriteSizeX * animationFrame, spriteSizeY * 3, spriteSizeX, spriteSizeY));
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		{
+			shapeSprite.move(0.f, .1f);
+			shapeSprite.setTextureRect(sf::IntRect(spriteSizeX * animationFrame, 0, spriteSizeX, spriteSizeY));
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+		{
+			window.close();
+		}
+		animationFrame++;
 
+		if (animationFrame >= 2) {
+			animationFrame = 0;
+		}
+		window.clear();
+	}
+
+	return 0;
+
+}
