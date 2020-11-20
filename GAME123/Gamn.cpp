@@ -1,4 +1,4 @@
-#include <SFML/Graphics.hpp>
+/*#include <SFML/Graphics.hpp>
 
 #include <iostream>
 
@@ -21,4 +21,4 @@ int main()
 		window.clear();
 	}
 	return EXIT_SUCCESS;
-}
+}*/

@@ -1,4 +1,4 @@
-#include "StateMachine.h"
+/*#include "StateMachine.h"
 
 namespace Sonar
 {
@@ -53,4 +53,4 @@ namespace Sonar
         // TODO: insert return statement here
         return this->_states.top();
     }
-}
+}*/
