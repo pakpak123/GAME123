@@ -134,7 +134,19 @@ void Player::move(sf::RenderWindow* window)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		//turn right
-		this->sprite.move(5.f, 0.f);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
+		{
+			sprite.move(2.75f, 0.f);
+			this->sprite.setTextureRect(sf::IntRect(this->P_x * this->A_x, this->A_y * 2, this->A_x, this->A_y));
+
+			this->P_x = P_x + 1;
+
+			if (this->P_x * this->A_x >= this->A_x * 3)
+			{
+				this->P_x = 0;
+			}
+		}
+		this->sprite.move(2.f, 0.f);
 		window->setFramerateLimit(this->speedMove);
 		this->sprite.setTextureRect(sf::IntRect(this->P_x * this->A_x, this->A_y * 2, this->A_x, this->A_y));
 
@@ -149,7 +161,19 @@ void Player::move(sf::RenderWindow* window)
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		//turn left
-		this->sprite.move(-5.f, 0.f);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
+		{
+			sprite.move(-2.75f, 0.f);
+			this->sprite.setTextureRect(sf::IntRect(this->P_x * this->A_x, this->A_y * 1, this->A_x, this->A_y));
+
+			this->P_x = P_x + 1;
+
+			if (this->P_x * this->A_x >= this->A_x * 3)
+			{
+				this->P_x = 0;
+			}
+		}
+		this->sprite.move(-2.f, 0.f);
 		window->setFramerateLimit(this->speedMove);
 		this->sprite.setTextureRect(sf::IntRect(this->P_x * this->A_x, this->A_y * 1, this->A_x, this->A_y));
 
@@ -163,6 +187,19 @@ void Player::move(sf::RenderWindow* window)
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
 		//down
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
+		{
+			sprite.move(0.f, 2.75f);
+			window->setFramerateLimit(this->speedMove);
+			this->sprite.setTextureRect(sf::IntRect(this->P_x * this->A_x, this->A_y * 0, this->A_x, this->A_y));
+
+			this->P_x = P_x + 1;
+
+			if (this->P_x * this->A_x >= this->A_x * 3)
+			{
+				this->P_x = 0;
+			}
+		}
 		this->sprite.move(0.f, 2.f);
 		window->setFramerateLimit(this->speedMove);
 		this->sprite.setTextureRect(sf::IntRect(this->P_x * this->A_x, this->A_y * 0, this->A_x, this->A_y));
@@ -177,7 +214,19 @@ void Player::move(sf::RenderWindow* window)
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
 		//up
-		this->sprite.move(0.f, 0.f);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
+		{
+			sprite.move(0.f, -2.75f);
+			this->sprite.setTextureRect(sf::IntRect(this->P_x * this->A_x, this->A_y * 3, this->A_x, this->A_y));
+
+			this->P_x = P_x + 1;
+
+			if (this->P_x * this->A_x >= this->A_x * 3)
+			{
+				this->P_x = 0;
+			}
+		}
+		this->sprite.move(0.f, -2.f);
 		window->setFramerateLimit(this->speedMove);
 		this->sprite.setTextureRect(sf::IntRect(this->P_x * this->A_x, this->A_y * 3, this->A_x, this->A_y));
 

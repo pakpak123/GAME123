@@ -1,19 +1,19 @@
 #include "Game.h"
-#include <string.h>
+
 
 void Game::iniWorld()
 {
-	if (!this->wordBackground_t.loadFromFile("C:/Users/tp/source/repos/GAME123/background.png"))
+	if (!this->wordBackground_t.loadFromFile("C:/Users/tp/source/repos/GAME123/A1.png"))
 	{
 		printf("Not Load Background");
 	}
 	this->wordBackground_s.setTexture(this->wordBackground_t);
-	this->wordBackground_s.setTextureRect(sf::IntRect(0, 0, 960, 800));
+	this->wordBackground_s.setTextureRect(sf::IntRect(0, 0, 960, 600));
 }
 
 void Game::iniWindow()
 {
-	this->window = new sf::RenderWindow(sf::VideoMode(960, 800), "Neo ??", sf::Style::Close | sf::Style::Titlebar);
+	this->window = new sf::RenderWindow(sf::VideoMode(960, 600), "Neo ??", sf::Style::Close | sf::Style::Titlebar);
 	this->window->setFramerateLimit(60);
 	this->window->setVerticalSyncEnabled(false);
 }
@@ -31,10 +31,10 @@ void Game::iniGui()
 	}
 
 	//inipoint
-	this->pointText.setFont(font);
-	this->pointText.setCharacterSize(50);
-	this->pointText.setPosition(this->window->getSize().x - 200, 0);
-	this->pointText.setString("POINT");
+//	this->pointText.setFont(font);
+//	this->pointText.setCharacterSize(50);
+//	this->pointText.setPosition(this->window->getSize().x - 200, 0);
+//	this->pointText.setString("POINT");
 
 	//update player
 	this->playHPBar.setSize(sf::Vector2f(300.f, 25.f));
@@ -43,6 +43,7 @@ void Game::iniGui()
 	this->playHPBarBack = this->playHPBar;
 	this->playHPBarBack.setFillColor(sf::Color(25, 25, 25, 200));
 
+	
 	this->GameOver.setFont(font);
 	this->GameOver.setFillColor(sf::Color::Red);
 	this->GameOver.setCharacterSize(60);
@@ -159,24 +160,24 @@ void Game::updateCollision()
 {
 	//set not move over screen
 	//turn left
-	if (this->player->getBound().left < 115.f)
+	if (this->player->getBound().left < 120.f)
 	{
-		this->player->setPosition(115.f, this->player->getBound().top);
+		this->player->setPosition(120.f, this->player->getBound().top);
 	}
 	//top
 	if (this->player->getBound().top < 0.f)
 	{
-		this->player->setPosition(this->player->getBound().left,0.f);
+		this->player->setPosition(this->player->getBound().left, this->window->getSize().y - this->player->getBound().height);
 	}
 	//right
-	if (this->player->getBound().left + this->player->getBound().width>=this->window->getSize().x-115.f)
+	if (this->player->getBound().left + this->player->getBound().width>=this->window->getSize().x-120.f)
 	{
-		this->player->setPosition(this->window->getSize().x-115.f- this->player->getBound().width, this->player->getBound().top);
+		this->player->setPosition(this->window->getSize().x-120.f- this->player->getBound().width, this->player->getBound().top);
 	}
 	//down
 	if (this->player->getBound().top + this->player->getBound().height >= this->window->getSize().y)
 	{
-		this->player->setPosition(this->player->getBound().left, this->window->getSize().y- this->player->getBound().height);
+		this->player->setPosition(this->player->getBound().left, this->player->getBound().top <=550);
 	}
 }
 
@@ -186,7 +187,7 @@ void Game::updateEnemy()
 	this->spawnTimer += 0.1f;
 	if (this->spawnTimer >= this->spawnTimerMax)
 	{
-		float randomX = rand() % this->window->getSize().x;
+	float randomX = rand() % this->window->getSize().x;
 		if (randomX >= 150 && randomX < -600)
 		{
 			this->enemies.push_back(new State(randomX, -100.f));
@@ -229,6 +230,7 @@ void Game::updateitem()
 		this->items.push_back(new State(rand() % this->window->getSize().x - 100, -100.f));
 		this->spawnTimerItem = 0.f;
 	}
+	
 	//update
 	unsigned   counter = 0;
 	for (auto* enemy1 : this->items)

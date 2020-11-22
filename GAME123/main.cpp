@@ -5,7 +5,7 @@ using namespace sf;
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(960, 800), "Neo ??", sf::Style::Close | sf::Style::Default);
+	sf::RenderWindow window(sf::VideoMode(960, 600), "Neo ??", sf::Style::Close | sf::Style::Default);
 	std::srand(static_cast<unsigned>(time(NULL)));
 
 	Game game;
