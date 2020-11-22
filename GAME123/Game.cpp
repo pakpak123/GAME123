@@ -1,5 +1,11 @@
 #include "Game.h"
 
+void Game::iniWindow()
+{
+	this->window = new sf::RenderWindow(sf::VideoMode(960, 600), "Neo ??", sf::Style::Close | sf::Style::Titlebar);
+	this->window->setFramerateLimit(60);
+	this->window->setVerticalSyncEnabled(false);
+}
 
 void Game::iniWorld()
 {
@@ -11,13 +17,6 @@ void Game::iniWorld()
 	this->wordBackground_s.setTextureRect(sf::IntRect(0, 0, 960, 600));
 }
 
-void Game::iniWindow()
-{
-	this->window = new sf::RenderWindow(sf::VideoMode(960, 600), "Neo ??", sf::Style::Close | sf::Style::Titlebar);
-	this->window->setFramerateLimit(60);
-	this->window->setVerticalSyncEnabled(false);
-}
-
 void Game::iniTexture()
 {
 }
@@ -26,20 +25,19 @@ void Game::iniGui()
 {
 	//Load Font
 	if (!this->font.loadFromFile("C:/Users/tp/source/repos/GAME123/Whale.ttf"))
-	{
-		printf("Not Load Font");
-	}
+			printf("Not Load Font");
 
 	//inipoint
-//	this->pointText.setFont(font);
-//	this->pointText.setCharacterSize(50);
-//	this->pointText.setPosition(this->window->getSize().x - 200, 0);
-//	this->pointText.setString("POINT");
+	this->pointText.setFont(font);
+	this->pointText.setCharacterSize(50);
+	this->pointText.setPosition(this->window->getSize().x - 200, 0);
+	this->pointText.setString("POINT");
 
 	//update player
 	this->playHPBar.setSize(sf::Vector2f(300.f, 25.f));
 	this->playHPBar.setFillColor(sf::Color::Red);
 	this->playHPBar.setPosition(sf::Vector2f(0, 50));
+
 	this->playHPBarBack = this->playHPBar;
 	this->playHPBarBack.setFillColor(sf::Color(25, 25, 25, 200));
 
@@ -50,7 +48,7 @@ void Game::iniGui()
 	this->GameOver.setPosition(this->window->getSize().x / 2.5f - this->GameOver.getGlobalBounds().width / 2.f,
 		this->window->getSize().y / 2.f - -this->GameOver.getGlobalBounds().height / 2.f);
 	this->GameOver.setString("GAME OVER!!!");
-
+	
 }
 
 void Game::inisystem()
@@ -77,21 +75,22 @@ void Game::iniItem()
 
 Game::Game()
 {
+	this->iniWindow();
+
 	this->iniWorld();
 	this->iniGui();
-	this->iniWindow();
 	this->inisystem();
 	this->iniPlayer();
 	this->iniEnemies();
-	this->iniItem();
-	this->iniTexture();
+	//this->iniItem();
+	//this->iniTexture();
 }
 
 Game::~Game()
 {
 	delete this->window;
 	delete this->player;
-
+	//delete enemy
 	for (auto* i : this->enemies)
 	{
 		delete i;
@@ -167,7 +166,7 @@ void Game::updateCollision()
 	//top
 	if (this->player->getBound().top < 0.f)
 	{
-		this->player->setPosition(this->player->getBound().left, this->window->getSize().y - this->player->getBound().height);
+		this->player->setPosition(this->player->getBound().left, this->player->getBound().top>0);
 	}
 	//right
 	if (this->player->getBound().left + this->player->getBound().width>=this->window->getSize().x-120.f)
