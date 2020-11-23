@@ -82,14 +82,15 @@ Game::Game()
 	this->inisystem();
 	this->iniPlayer();
 	this->iniEnemies();
-	//this->iniItem();
-	//this->iniTexture();
+	this->iniItem();
+	this->iniTexture();
 }
 
 Game::~Game()
 {
 	delete this->window;
 	delete this->player;
+
 	//delete enemy
 	for (auto* i : this->enemies)
 	{
@@ -142,7 +143,7 @@ void Game::updateInput()
 void Game::updateGUI()
 {
 	std::stringstream ss;
-	ss << "Point :" << this->point;
+	ss << "Point : " << this->point;
 	this->pointText.setString(ss.str());
 
 	//update player
@@ -166,7 +167,7 @@ void Game::updateCollision()
 	//top
 	if (this->player->getBound().top < 0.f)
 	{
-		this->player->setPosition(this->player->getBound().left, this->player->getBound().top>0);
+		this->player->setPosition(this->player->getBound().left, this->player->getBound().top > 0);
 	}
 	//right
 	if (this->player->getBound().left + this->player->getBound().width>=this->window->getSize().x-120.f)
@@ -183,11 +184,11 @@ void Game::updateCollision()
 void Game::updateEnemy()
 {
 	//spawn
-	this->spawnTimer += 0.1f;
+	this->spawnTimer += 1.0f;
 	if (this->spawnTimer >= this->spawnTimerMax)
 	{
 	float randomX = rand() % this->window->getSize().x;
-		if (randomX >= 150 && randomX < -600)
+		if (randomX >= 120 && randomX < 800)
 		{
 			this->enemies.push_back(new State(randomX, -100.f));
 			this->spawnTimer = 0.f;
@@ -279,7 +280,7 @@ void Game::render()
 
 	//draw world
 	this->renderWorld();
-
+	
 	//draw stuff
 	this->player->render(*this->window);
 	for (auto* enemy : this->enemies)

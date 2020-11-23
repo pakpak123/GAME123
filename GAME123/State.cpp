@@ -2,70 +2,74 @@
 
 void State::iniVariation()
 {
-	this->pointConut = rand() % 5 + 3; //min=3 and max=7
+	this->pointConut = rand() % 5 +3; //min=3 and max=7
 	this->type = 0;
 	this->speed = static_cast<float>(this->pointConut);
 	this->hp = this->hpmax;
-	this->hpmax = static_cast<float>(this->pointConut);
+	this->hpmax = static_cast<float>(this ->pointConut);
 	this->damage = this->pointConut;
 	this->recover = this->pointConut;
 	this->point = this->pointConut;
 }
 
-void State::iniTexture(sf::Sprite sprite)
+void State::iniTexture(sf::Sprite enemies)
 {
 	 enemies = this->enemies;
 
-	 if (!this->texture1.loadFromFile("C:/Users/tp/source/repos/GAME123/04.png"))
+	 if (!this->texture1.loadFromFile("C:/Users/tp/source/repos/GAME123/B1.png"))
 	 {
 		 printf("Not Enemy 1-5");
 	 }
-	 if (!this->texture2.loadFromFile("C:/Users/tp/source/repos/GAME123/04.png"))
+	 if (!this->texture2.loadFromFile("C:/Users/tp/source/repos/GAME123/B3.png"))
 	 {
 		 printf("Not Enemy 1-5");
 	 }
-	 if (!this->texture3.loadFromFile("C:/Users/tp/source/repos/GAME123/04.png"))
+	 if (!this->texture3.loadFromFile("C:/Users/tp/source/repos/GAME123/B5.png"))
 	 {
 		 printf("Not Enemy 1-5");
 	 }
-	 if (!this->texture4.loadFromFile("C:/Users/tp/source/repos/GAME123/04.png"))
+	 if (!this->texture4.loadFromFile("C:/Users/tp/source/repos/GAME123/B6.png"))
 	 {
 		 printf("Not Enemy 1-5");
 	 }
 
 	 this->typeEnemy = rand() % 4;
-	 //Green
-	 if (this->typeEnemy == 3)
+	 
+	 if (this->typeEnemy == 0)
 	 {
-		 this->enemy[3].setTexture(this->texture4);
-		 this->enemies = this->enemy[3];
-		 this->speed = static_cast<float>(this->pointConut / 2);
-		 this->enemies.setScale(0.5f, 0.5f);
-
+		 this->enemy[0].setTexture(this->texture1);
+		 this->enemies = this->enemy[0];
+		 this->speed = static_cast<float>(this->pointConut / 2+2.5);
+		 this->enemies.setScale(0.35f, 0.35f);
 	 }
-	 //Red
-	 if (this->typeEnemy == 2)
-	 {
-		 this->enemy[3].setTexture(this->texture3);
-		 this->enemies = this->enemy[2];
-		 this->speed = static_cast<float>(this->pointConut / 2);
-		 this->enemies.setScale(0.5f, 0.5f);
 
-	 }
-	 //yellow
 	 if (this->typeEnemy == 1)
 	 {
-		 this->enemy[1].setTexture(this->texture4);
-		 this->enemies = this->enemy[3];
+		 this->enemy[1].setTexture(this->texture2);
+		 this->enemies = this->enemy[1];
 		 this->speed = static_cast<float>(this->pointConut / 2+3);
 		 this->enemies.setScale(0.5f, 0.5f);
 
 	 }
-	 //
-	 if (this->typeEnemy == 0)
+	 
+	 if (this->typeEnemy == 2)
 	 {
-		 
+		 this->enemy[2].setTexture(this->texture3);
+		 this->enemies = this->enemy[2];
+		 this->speed = static_cast<float>(this->pointConut / 2+1);
+		 this->enemies.setScale(0.35f, 0.35f);
+
 	 }
+	
+	 if (this->typeEnemy == 3)
+	 {
+		 this->enemy[3].setTexture(this->texture4);
+		 this->enemies = this->enemy[3];
+		 this->speed = static_cast<float>(this->pointConut / 2+1);
+		 this->enemies.setScale(0.35f, 0.35f);
+
+	 }
+	 
 }
 
 State::State(float pos_x, float pos_y)
@@ -75,10 +79,6 @@ State::State(float pos_x, float pos_y)
 	this->Item();
 	this->enemies.setPosition(pos_x, pos_y);
 	this->item.setPosition(pos_x, pos_y);
-}
-
-State::~State()
-{
 }
 
 void State::Item()
@@ -91,6 +91,10 @@ void State::Item()
 		this->speed = static_cast<float>(this->pointConut / 2 + 1);
 
 	}
+}
+
+State::~State()
+{
 }
 
 const sf::FloatRect State::getBound() const
