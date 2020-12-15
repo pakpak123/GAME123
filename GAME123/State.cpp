@@ -10,6 +10,7 @@ void State::iniVariation()
 	this->damage = this->pointConut;
 	this->recover = this->pointConut;
 	this->point = this->pointConut;
+	this->addpoint = this->pointConut;
 }
 
 void State::iniTexture(sf::Sprite enemies)
@@ -20,20 +21,13 @@ void State::iniTexture(sf::Sprite enemies)
 	 {
 		 printf("Not Enemy 1-5");
 	 }
-	 if (!this->texture2.loadFromFile("C:/Users/tp/source/repos/GAME123/B3.png"))
+	 if (!this->texture2.loadFromFile("C:/Users/tp/source/repos/GAME123/B8.png"))
 	 {
 		 printf("Not Enemy 1-5");
 	 }
-	 if (!this->texture3.loadFromFile("C:/Users/tp/source/repos/GAME123/B5.png"))
-	 {
-		 printf("Not Enemy 1-5");
-	 }
-	 if (!this->texture4.loadFromFile("C:/Users/tp/source/repos/GAME123/B6.png"))
-	 {
-		 printf("Not Enemy 1-5");
-	 }
+	 
 
-	 this->typeEnemy = rand() % 4;
+	 this->typeEnemy = rand() % 2;
 	 
 	 if (this->typeEnemy == 0)
 	 {
@@ -52,49 +46,48 @@ void State::iniTexture(sf::Sprite enemies)
 
 	 }
 	 
-	 if (this->typeEnemy == 2)
-	 {
-		 this->enemy[2].setTexture(this->texture3);
-		 this->enemies = this->enemy[2];
-		 this->speed = static_cast<float>(this->pointConut / 2+1);
-		 this->enemies.setScale(0.35f, 0.35f);
-
-	 }
 	
-	 if (this->typeEnemy == 3)
-	 {
-		 this->enemy[3].setTexture(this->texture4);
-		 this->enemies = this->enemy[3];
-		 this->speed = static_cast<float>(this->pointConut / 2+1);
-		 this->enemies.setScale(0.35f, 0.35f);
-
-	 }
 	 
 }
 
-State::State(float pos_x, float pos_y)
+
+State::State(float pos_x, float pos_y,int i)
 {
 	this->iniVariation();
 	this->iniTexture(enemies);
-	this->Item();
+	this->Item1(i);
+	this->Item2(i);
 	this->enemies.setPosition(pos_x, pos_y);
-	this->item.setPosition(pos_x, pos_y);
-}
-
-void State::Item()
-{
-	this->typeItem = rand() % 100;
-
-	if (this->typeItem == 99)
-	{
-		this->item.setTexture(this->texture1);
-		this->speed = static_cast<float>(this->pointConut / 2 + 1);
-
-	}
+	this->item1.setPosition(pos_x, pos_y);
+	this->item2.setPosition(pos_x, pos_y);
 }
 
 State::~State()
 {
+}
+
+void State::Item1(int i)
+{
+	this->typeItem1 = rand() % i;
+
+	if (this->typeItem1 == 0)
+	{
+		this->item.setTexture(this->texture4);
+		this->speed = static_cast<float>(this->pointConut / 2 + 1);
+		this->item.setScale(.7f, .7f);
+	}
+}
+
+void State::Item2(int i)
+{
+	this->typeItem2 = rand() % i;
+
+	if (this->typeItem2 == 0)
+	{
+		this->item2.setTexture(this->texture5);
+		this->speed = static_cast<float>(this->pointConut / 2 + 1);
+		this->item2.setScale(.7f, .7f);
+	}
 }
 
 const sf::FloatRect State::getBound() const
@@ -102,9 +95,14 @@ const sf::FloatRect State::getBound() const
 	return this->enemies.getGlobalBounds();
 }
 
-const sf::FloatRect State::getBoundItem() const
+const sf::FloatRect State::getBoundItem1() const
 {
-	return this->item.getGlobalBounds();
+	return this->item1.getGlobalBounds();
+}
+
+const sf::FloatRect State::getBoundItem2() const
+{
+	return this->item2.getGlobalBounds();
 }
 
 const sf::Vector2f& State::getpos() const
@@ -113,11 +111,18 @@ const sf::Vector2f& State::getpos() const
 	return this->enemies.getPosition();
 }
 
-const sf::Vector2f& State::getposItem() const
+const sf::Vector2f& State::getposItem1() const
 {
 	// TODO: insert return statement here
-	return this->item.getPosition();
+	return this->item1.getPosition();
 }
+
+const sf::Vector2f& State::getposItem2() const
+{
+	// TODO: insert return statement here
+	return this->item2.getPosition();
+}
+
 
 const int& State::getPoint() const
 {
@@ -137,14 +142,25 @@ const int& State::getRecover() const
 	return this->recover;
 }
 
+const int& State::Addpoint() const
+{
+	// TODO: insert return statement here
+	return this->addpoint;
+}
+
 void State::update()
 {
 	this->enemies.move(0.f, this->speed);
 }
 
-void State::updateItem()
+void State::updateItem1()
 {
-	this->item.move(0.f, this->speed);
+	this->item1.move(0.f, this->speed);
+}
+
+void State::updateItem2()
+{
+	this->item2.move(0.f, this->speed);
 }
 
 void State::render(sf::RenderTarget* target)
@@ -152,7 +168,14 @@ void State::render(sf::RenderTarget* target)
 	target->draw(this->enemies);
 }
 
-void State::renderitem(sf::RenderTarget* target)
+void State::renderitem1(sf::RenderTarget* target)
 {
-	target->draw(this->item);
+	target->draw(this->item1);
 }
+
+void State::renderitem2(sf::RenderTarget* target)
+{
+	target->draw(this->item2);
+}
+
+

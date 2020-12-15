@@ -6,20 +6,27 @@
 class State
 {
 private:
+
+protected:
+
 	unsigned pointConut;
 
-	sf::Sprite enemy[4];
+	sf::Sprite enemy[2];
 	sf::Sprite enemies;
 	sf::Texture texture1;
 	sf::Texture texture2;
 	sf::Texture texture3;
 	sf::Texture texture4;
+	sf::Texture texture5;
 
 	sf::Sprite item;
+	sf::Sprite item1;
+	sf::Sprite item2;
 
 	int type;
 	int typeEnemy;
-	int typeItem;
+	int typeItem1;
+	int typeItem2;
 
 	float speed;
 
@@ -28,48 +35,39 @@ private:
 	int recover;
 	int damage;
 	int point;
-
+	int addpoint;
 	void iniVariation();
 	void iniTexture(sf::Sprite sprite);
 
 public:
-	State(float pos_x, float pos_y);
+	
+
+	State(float pos_x, float pos_y,int i);
 	virtual ~State();
 
-	void Item();
+	void Item1(int i);
+	void Item2(int i);
 
 	const sf::FloatRect getBound() const;
-	const sf::FloatRect getBoundItem() const;
+	const sf::FloatRect getBoundItem1() const;
+	const sf::FloatRect getBoundItem2() const;
 	const sf::Vector2f& getpos() const;
-	const sf::Vector2f& getposItem() const;
+	const sf::Vector2f& getposItem1() const;
+	const sf::Vector2f& getposItem2() const;
 
 	const int& getPoint() const;
 	const int& getDamage() const;
 	const int& getRecover() const;
+	const int& Addpoint() const;
 
 	void update();
-	void updateItem();
+	void updateItem1();
+	void updateItem2();
 
 	void render(sf::RenderTarget* target);
-	void renderitem(sf::RenderTarget* target);
+	void renderitem1(sf::RenderTarget* target);
+	void renderitem2(sf::RenderTarget* target);
 };
-
-#endif //!STATE_H
-/*namespace Sonar
-{
-	class State
-	{
-	public:
-		virtual void Init( ) = 0;
-
-		virtual void HandleInput( ) = 0;
-		virtual void Update( float dt ) = 0;
-		virtual void Draw(float dt) = 0;
-	
-		virtual void Pause( ) { }
-		virtual void Resume( ) { }
-	};
-}*/
-
+#endif
 
 
