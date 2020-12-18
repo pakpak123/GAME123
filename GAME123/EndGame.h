@@ -1,8 +1,8 @@
+#pragma once
 #include"SFML/Graphics.hpp"
 #include<fstream>
 #include<sstream>
-#include<string.h>
-
+#include"Game.h"
 
 
 class EndGame
@@ -12,13 +12,18 @@ private:
 	sf::Text hightscoreText;
 
 	sf::Text pointtText;
+
 	sf::Text pointtText1;
 	sf::Text pointtText2;
 	sf::Text pointtText3;
+	sf::Text pointtText4;
+	sf::Text pointtText5;
 
-	unsigned score;
-	unsigned score1;
-	unsigned score2;
+	int score;
+
+	int temp;
+
+	int score_[5];
 
 
 
@@ -31,9 +36,8 @@ private:
 
 public:
 
-	EndGame(unsigned score, unsigned hightscore, sf::RenderWindow* window, sf::Text pointt);
+	EndGame(int score, unsigned hightscore, sf::RenderWindow* window, sf::Text pointt);
 	virtual ~EndGame();
-	void update(unsigned Hightscore, unsigned point, unsigned c);
+	void update(int Hightscore, int point, unsigned c);
 	void render(sf::RenderTarget* target);
 };
-

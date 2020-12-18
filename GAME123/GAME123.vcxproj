@@ -146,28 +146,33 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AssetManager.cpp" />
-    <ClCompile Include="DEFINITIONS.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="EndGame.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameState.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="SplashState.cpp" />
+    <ClCompile Include="MainMenuState.cpp" />
+    <ClCompile Include="Sstate.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StateMachine.cpp" />
+    <ClCompile Include="WINDOW.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\OneDrive\เอกสาร\AssetManager.h" />
     <ClInclude Include="AssetManager.h" />
-    <ClInclude Include="DEFINITIONS.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="EndGame.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameState.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="MainMenuState.h" />
     <ClInclude Include="Menu.h" />
-    <ClInclude Include="SplashState.h" />
+    <ClInclude Include="Sstate.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateMachine.h" />
+    <ClInclude Include="WINDOW.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

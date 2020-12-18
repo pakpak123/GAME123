@@ -1,8 +1,10 @@
 #pragma once
 #include "AssetManager.h"
-#include "State.h"
+#include "Sstate.h"
 #include <map>
 #include <sstream>
+#include <SFML/Audio/Sound.hpp>
+#include <SFML/Audio/SoundBuffer.hpp>
 #include"EndGame.h"
 
 class Game
@@ -12,19 +14,19 @@ private:
 	sf::RenderWindow* window;
 	//player
 	Player* player;
-	EndGame* highscore;
+	
 
 	//State
 	float spawnTimer;
 	float spawnTimerMax;
 
-	std::vector<State*> enemies;
-	std::vector<State*> items;
-	std::vector<State*> items2;
+	std::vector<Sstate*> enemies;
+	std::vector<Sstate*> items1;
+	std::vector<Sstate*> items2;
 
 	//item recover
-	float spawnTimerItem;
-	float spawnTimerItemMax;
+	float spawnTimerItem1;
+	float spawnTimerItemMax1;
 
 	float spawnTimerItem2;
 	float spawnTimerItemMax2;
@@ -51,7 +53,12 @@ private:
 	sf::Sprite wordBackground_s;
 	sf::Sprite wordBackground_1;
 	sf::Sprite wordBackground_2;
+	//sound effect
+	sf::SoundBuffer sound1;
+	sf::SoundBuffer sound2;
 
+	sf::Sound soundeffect1;
+	sf::Sound soundeffect2;
 	//Time
 	sf::Clock clock;//ใช้ Clock นับเวลาที่เปลี่ยนไป deltaTime
 	float speed = 50.f;// ความเร็วของการเลื่อน 50
@@ -60,14 +67,15 @@ private:
 	void iniWorld();
 	void iniWindow();
 	void iniTexture();
+	void iniFalling();
 	void iniGui();
 	void inisystem();
-	void inisystemHightscore();
+	//void inisystemHightscore();
 	void iniPlayer();
 	void iniEnemies();
 	void iniItem1();
 	void iniItem2();
-
+	void iniSound();
 public:
 	Game();
 	virtual ~Game();
@@ -80,16 +88,19 @@ public:
 	void updateWorld();
 	void updatebBackground();
 	void updateCollision();
-	void updateHightscore();
+	///void updateHightscore();
+	//void updateHightscore();
 	void updateEnemy();
 	void updateitem1();
 	void updateitem2();
 	void updateCombat();
 	void update();
+	void updateFalling();
 	
+	void renderFalling();
 	void renderGUI();
 	void render();
 	void renderWorld();
-	void renderHightscore();
+	//void renderHightscore();
 };
 

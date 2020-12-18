@@ -1,6 +1,22 @@
 #include <SFML/Audio.hpp>
 #include "Game.h"
 #include <iostream>
+
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include"WINDOW.h"
+#include<time.h>
+#include <cstdlib>
+
+#include <SFML/Graphics.hpp>
+#include <SFML\Audio.hpp>
+#include <Windows.h>
+#include <vector>
+#include <sstream>
+#include <fstream>
+#include <cstdlib>
+
 //#include "Menu.h"
 using namespace sf;
 
@@ -24,12 +40,11 @@ int main()
 	//menu.draw(window);
 
 	std::srand(static_cast<unsigned>(time(NULL)));
-	
-	Game game;
+	WINDOW window2;
 
-
-	game.run();
+	window2.run();
 
 
 }
+
 

@@ -1,73 +1,48 @@
 #pragma once
-#ifndef STATE_H
-#define STATE_H
-#include "SFML/Graphics.hpp"
+
+#include<SFML/Graphics.hpp>
+#include<SFML/System.hpp>
+#include<SFML/Window.hpp>
+#include<stack>
+#include"Button.h"
+#include "Game.h"
 
 class State
 {
+
 private:
+
 
 protected:
 
-	unsigned pointConut;
+	std::stack<State*>* state;
+	sf::RenderWindow* window;
+	std::map<std::string, int>* supportedKey;
+	std::map<std::string, int> keybinds;
+	bool quit;
 
-	sf::Sprite enemy[2];
-	sf::Sprite enemies;
-	sf::Texture texture1;
-	sf::Texture texture2;
-	sf::Texture texture3;
-	sf::Texture texture4;
-	sf::Texture texture5;
+	sf::Vector2i mousePosScreen;
+	sf::Vector2i mousePosWindow;
+	sf::Vector2f mousePosView;
 
-	sf::Sprite item;
-	sf::Sprite item1;
-	sf::Sprite item2;
+	//Resources
+	std::map<std::string, sf::Texture> texture;
 
-	int type;
-	int typeEnemy;
-	int typeItem1;
-	int typeItem2;
-
-	float speed;
-
-	int hp;
-	int hpmax;
-	int recover;
-	int damage;
-	int point;
-	int addpoint;
-	void iniVariation();
-	void iniTexture(sf::Sprite sprite);
+	//Function
+	virtual void iniKeybind() = 0;
 
 public:
-	
-
-	State(float pos_x, float pos_y,int i);
+	State(sf::RenderWindow* window, std::map<std::string, int>* supportedKey, std::stack<State*>* state);
 	virtual ~State();
 
-	void Item1(int i);
-	void Item2(int i);
+	const bool& getQuit() const;
+	void endState();
+	//virtual void endStateUpdate() = 0;
 
-	const sf::FloatRect getBound() const;
-	const sf::FloatRect getBoundItem1() const;
-	const sf::FloatRect getBoundItem2() const;
-	const sf::Vector2f& getpos() const;
-	const sf::Vector2f& getposItem1() const;
-	const sf::Vector2f& getposItem2() const;
 
-	const int& getPoint() const;
-	const int& getDamage() const;
-	const int& getRecover() const;
-	const int& Addpoint() const;
-
-	void update();
-	void updateItem1();
-	void updateItem2();
-
-	void render(sf::RenderTarget* target);
-	void renderitem1(sf::RenderTarget* target);
-	void renderitem2(sf::RenderTarget* target);
+	virtual void updateMousePosition();
+	virtual void updateInput(const float& dt) = 0;
+	virtual void update(const float& dt) = 0;
+	virtual void render(sf::RenderTarget* target = NULL) = 0;
 };
-#endif
-
 

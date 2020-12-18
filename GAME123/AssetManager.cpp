@@ -136,7 +136,7 @@ void Player::move(sf::RenderWindow* window)
 		//turn right
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
 		{
-			sprite.move(2.75f, 0.f);
+			sprite.move(3.5f, 0.f);
 			this->sprite.setTextureRect(sf::IntRect(this->P_x * this->A_x, this->A_y * 2, this->A_x, this->A_y));
 
 			this->P_x = P_x + 1;
@@ -146,7 +146,7 @@ void Player::move(sf::RenderWindow* window)
 				this->P_x = 0;
 			}
 		}
-		this->sprite.move(2.f, 0.f);
+		this->sprite.move(2.75f, 0.f);
 		window->setFramerateLimit(this->speedMove);
 		this->sprite.setTextureRect(sf::IntRect(this->P_x * this->A_x, this->A_y * 2, this->A_x, this->A_y));
 
@@ -163,7 +163,7 @@ void Player::move(sf::RenderWindow* window)
 		//turn left
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
 		{
-			sprite.move(-2.75f, 0.f);
+			sprite.move(-3.5f, 0.f);
 			this->sprite.setTextureRect(sf::IntRect(this->P_x * this->A_x, this->A_y * 1, this->A_x, this->A_y));
 
 			this->P_x = P_x + 1;
@@ -173,7 +173,7 @@ void Player::move(sf::RenderWindow* window)
 				this->P_x = 0;
 			}
 		}
-		this->sprite.move(-2.f, 0.f);
+		this->sprite.move(-2.75f, 0.f);
 		window->setFramerateLimit(this->speedMove);
 		this->sprite.setTextureRect(sf::IntRect(this->P_x * this->A_x, this->A_y * 1, this->A_x, this->A_y));
 
@@ -189,7 +189,7 @@ void Player::move(sf::RenderWindow* window)
 		//down
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
 		{
-			sprite.move(0.f, 2.75f);
+			sprite.move(0.f, 3.50f);
 			window->setFramerateLimit(this->speedMove);
 			this->sprite.setTextureRect(sf::IntRect(this->P_x * this->A_x, this->A_y * 0, this->A_x, this->A_y));
 
@@ -200,7 +200,7 @@ void Player::move(sf::RenderWindow* window)
 				this->P_x = 0;
 			}
 		}
-		this->sprite.move(0.f, 2.f);
+		this->sprite.move(0.f, 2.75f);
 		window->setFramerateLimit(this->speedMove);
 		this->sprite.setTextureRect(sf::IntRect(this->P_x * this->A_x, this->A_y * 0, this->A_x, this->A_y));
 
@@ -216,7 +216,7 @@ void Player::move(sf::RenderWindow* window)
 		//up
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
 		{
-			sprite.move(0.f, -2.75f);
+			sprite.move(0.f, -3.5f);
 			this->sprite.setTextureRect(sf::IntRect(this->P_x * this->A_x, this->A_y * 3, this->A_x, this->A_y));
 
 			this->P_x = P_x + 1;
@@ -226,7 +226,7 @@ void Player::move(sf::RenderWindow* window)
 				this->P_x = 0;
 			}
 		}
-		this->sprite.move(0.f, -2.f);
+		this->sprite.move(0.f, -2.75f);
 		window->setFramerateLimit(this->speedMove);
 		this->sprite.setTextureRect(sf::IntRect(this->P_x * this->A_x, this->A_y * 3, this->A_x, this->A_y));
 
@@ -273,39 +273,3 @@ void Player::render(sf::RenderTarget& target)
 
 
 
-
-
-/*namespace Sonar
-{
-	void AssetManager::LoadTexture(std::string name, std::string fileName)
-	{
-		sf::Texture tex;
-
-		if (tex.loadFromFile(fileName))
-		{
-			this->_textures[name] = tex;
-		}
-	}
-
-	sf::Texture& AssetManager::GetTexture(std::string name)
-	{
-		// TODO: insert return statement here
-		return this->_textures.at(name);
-	}
-
-	void AssetManager::LoadFont(std::string name, std::string fileName)
-	{
-		sf::Font font;
-
-		if (font.loadFromFile(fileName))
-		{
-			this->_fonts[name] = font;
-		}
-	}
-
-	sf::Font& AssetManager::GetFont(std::string name)
-	{
-		// TODO: insert return statement here
-		return this->_fonts.at(name);
-	}
-}*/
