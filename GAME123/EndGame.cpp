@@ -4,7 +4,7 @@ void EndGame::iniText(sf::RenderWindow* window, sf::Text pointt)
 {
 
 	//load font
-	if (!font.loadFromFile("font/FC Motorway Semi-condensed Regular.otf"))
+	if (!font.loadFromFile(" "))
 		printf("NOT LOAD FONT");
 
 	//ini hightscoreText
@@ -51,7 +51,7 @@ void EndGame::iniText(sf::RenderWindow* window, sf::Text pointt)
 
 void EndGame::iniTextBackground(sf::RenderWindow* window)
 {
-	if (!this->bg.loadFromFile("img/background/bg3.png"))
+	if (!this->bg.loadFromFile(" "))
 	{
 		printf("NOT LOAD BG High");
 	}

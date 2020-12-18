@@ -2,7 +2,7 @@
 
 void Button::inisound()
 {
-	if (!this->soundload.loadFromFile("sound/menu.wav"))
+	if (!this->soundload.loadFromFile("C:/Users/tp/source/repos/GAME123/10.ogg"))
 		printf("NOT LOAD SOUND MENU");
 	this->sound.setBuffer(this->soundload);
 }

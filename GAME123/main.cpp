@@ -26,7 +26,7 @@ int main()
 
 	//sound
 	sf::SoundBuffer Sound1;
-	if (!Sound1.loadFromFile("C:/Users/tp/source/repos/GAME123/01234.ogg"))
+	if (!Sound1.loadFromFile("C:/Users/tp/source/repos/GAME123/MainMusic.ogg"))
 	{
 		std::cout << "ERROR" << std::endl;
 	}
@@ -34,6 +34,7 @@ int main()
 	Sound.setBuffer(Sound1);
 	Sound.setLoop(true);
 	Sound.play();
+	Sound.setVolume(50);
 
 	//Menu menu(window.getSize().x,window.getSize().y);
 

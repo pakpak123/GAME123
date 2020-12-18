@@ -24,7 +24,6 @@ private:
 	Player* player;
 	EndGame* highscore;
 
-	//Boss
 
 	//Enemy
 	float spawnTimer;

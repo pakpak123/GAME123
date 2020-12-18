@@ -7,7 +7,7 @@ void MainMenuState::iniVariable()
 void MainMenuState::iniSound()
 {
 
-	if (!this->soundload2.loadFromFile("C:/Users/tp/source/repos/GAME123/20.ogg"))
+	if (!this->soundload2.loadFromFile("C:/Users/tp/source/repos/GAME123/10.ogg"))
 		printf("NOT LOAD SOUND MENU");
 
 	this->sound2.setBuffer(this->soundload2);

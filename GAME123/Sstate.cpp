@@ -193,10 +193,10 @@ void Sstate::render(sf::RenderTarget* target)
 	target->draw(this->enemies);
 }
 
-void Sstate::renderitem1(sf::RenderTarget* target)
+/*void Sstate::renderitem1(sf::RenderTarget* target)
 {
 	target->draw(this->item1);
-}
+}*/
 
 void Sstate::renderitem2(sf::RenderTarget* target)
 {

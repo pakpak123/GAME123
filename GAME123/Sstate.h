@@ -65,7 +65,7 @@ public:
 	void updateItem2();
 
 	void render(sf::RenderTarget* target);
-	void renderitem1(sf::RenderTarget* target);
+	//void renderitem1(sf::RenderTarget* target);
 	void renderitem2(sf::RenderTarget* target);
 };
 #endif
